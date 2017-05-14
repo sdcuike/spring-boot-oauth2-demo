@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdcuike.practice.mapper.CompanyMapper">
+  <resultMap id="BaseResultMap" type="com.sdcuike.practice.domain.Company">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="company_oid" jdbcType="VARCHAR" property="companyOid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="logo_id" jdbcType="BIGINT" property="logoId" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="created_date" jdbcType="TIMESTAMP" property="createdDate" />
+    <result column="done_register_lead" jdbcType="BIT" property="doneRegisterLead" />
+    <result column="tax_id" jdbcType="VARCHAR" property="taxId" />
+    <result column="company_type" jdbcType="VARCHAR" property="companyType" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, company_oid, name, logo_id, created_by, created_date, done_register_lead, tax_id, 
+    company_type, update_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from company
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from company
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.sdcuike.practice.domain.Company">
+    insert into company (id, company_oid, name, 
+      logo_id, created_by, created_date, 
+      done_register_lead, tax_id, company_type, 
+      update_date)
+    values (#{id,jdbcType=BIGINT}, #{companyOid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{logoId,jdbcType=BIGINT}, #{createdBy,jdbcType=VARCHAR}, #{createdDate,jdbcType=TIMESTAMP}, 
+      #{doneRegisterLead,jdbcType=BIT}, #{taxId,jdbcType=VARCHAR}, #{companyType,jdbcType=VARCHAR}, 
+      #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sdcuike.practice.domain.Company">
+    insert into company
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="companyOid != null">
+        company_oid,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="logoId != null">
+        logo_id,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="createdDate != null">
+        created_date,
+      </if>
+      <if test="doneRegisterLead != null">
+        done_register_lead,
+      </if>
+      <if test="taxId != null">
+        tax_id,
+      </if>
+      <if test="companyType != null">
+        company_type,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="companyOid != null">
+        #{companyOid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="logoId != null">
+        #{logoId,jdbcType=BIGINT},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null">
+        #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="doneRegisterLead != null">
+        #{doneRegisterLead,jdbcType=BIT},
+      </if>
+      <if test="taxId != null">
+        #{taxId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyType != null">
+        #{companyType,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sdcuike.practice.domain.Company">
+    update company
+    <set>
+      <if test="companyOid != null">
+        company_oid = #{companyOid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="logoId != null">
+        logo_id = #{logoId,jdbcType=BIGINT},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null">
+        created_date = #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="doneRegisterLead != null">
+        done_register_lead = #{doneRegisterLead,jdbcType=BIT},
+      </if>
+      <if test="taxId != null">
+        tax_id = #{taxId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyType != null">
+        company_type = #{companyType,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sdcuike.practice.domain.Company">
+    update company
+    set company_oid = #{companyOid,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      logo_id = #{logoId,jdbcType=BIGINT},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      created_date = #{createdDate,jdbcType=TIMESTAMP},
+      done_register_lead = #{doneRegisterLead,jdbcType=BIT},
+      tax_id = #{taxId,jdbcType=VARCHAR},
+      company_type = #{companyType,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+    <select id="selectAll" resultType="Company">
+        select
+        <include refid="Base_Column_List" />
+        from company
+    </select>
+
+    <select id="selectAllPageable" resultType="Company">
+    select *
+    from  company
+  </select>
+</mapper>

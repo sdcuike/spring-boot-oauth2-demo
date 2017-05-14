@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdcuike.practice.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.sdcuike.practice.domain.User">
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, login_name, phone, password_hash, first_name, last_name, email, image_url, activated, 
+    lang_key, activation_key, reset_key, reset_time, create_by, create_time, lastmodified_by, 
+    lastmodified_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from user
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.sdcuike.practice.domain.User">
+    insert into user (id, login_name, phone, 
+      password_hash, first_name, last_name, 
+      email, image_url, activated, 
+      lang_key, activation_key, reset_key, 
+      reset_time, create_by, create_time, 
+      lastmodified_by, lastmodified_time)
+    values (#{id,jdbcType=BIGINT}, #{loginName,jdbcType=VARCHAR}, #{phone,jdbcType=CHAR}, 
+      #{passwordHash,jdbcType=VARCHAR}, #{firstName,jdbcType=VARCHAR}, #{lastName,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{imageUrl,jdbcType=VARCHAR}, #{activated,jdbcType=BIT}, 
+      #{langKey,jdbcType=VARCHAR}, #{activationKey,jdbcType=VARCHAR}, #{resetKey,jdbcType=VARCHAR}, 
+      #{resetTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{lastmodifiedBy,jdbcType=VARCHAR}, #{lastmodifiedTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sdcuike.practice.domain.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="loginName != null">
+        login_name,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="passwordHash != null">
+        password_hash,
+      </if>
+      <if test="firstName != null">
+        first_name,
+      </if>
+      <if test="lastName != null">
+        last_name,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="imageUrl != null">
+        image_url,
+      </if>
+      <if test="activated != null">
+        activated,
+      </if>
+      <if test="langKey != null">
+        lang_key,
+      </if>
+      <if test="activationKey != null">
+        activation_key,
+      </if>
+      <if test="resetKey != null">
+        reset_key,
+      </if>
+      <if test="resetTime != null">
+        reset_time,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="lastmodifiedBy != null">
+        lastmodified_by,
+      </if>
+      <if test="lastmodifiedTime != null">
+        lastmodified_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="loginName != null">
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=CHAR},
+      </if>
+      <if test="passwordHash != null">
+        #{passwordHash,jdbcType=VARCHAR},
+      </if>
+      <if test="firstName != null">
+        #{firstName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastName != null">
+        #{lastName,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="imageUrl != null">
+        #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="activated != null">
+        #{activated,jdbcType=BIT},
+      </if>
+      <if test="langKey != null">
+        #{langKey,jdbcType=VARCHAR},
+      </if>
+      <if test="activationKey != null">
+        #{activationKey,jdbcType=VARCHAR},
+      </if>
+      <if test="resetKey != null">
+        #{resetKey,jdbcType=VARCHAR},
+      </if>
+      <if test="resetTime != null">
+        #{resetTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastmodifiedBy != null">
+        #{lastmodifiedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastmodifiedTime != null">
+        #{lastmodifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sdcuike.practice.domain.User">
+    update user
+    <set>
+      <if test="loginName != null">
+        login_name = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=CHAR},
+      </if>
+      <if test="passwordHash != null">
+        password_hash = #{passwordHash,jdbcType=VARCHAR},
+      </if>
+      <if test="firstName != null">
+        first_name = #{firstName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastName != null">
+        last_name = #{lastName,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="imageUrl != null">
+        image_url = #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="activated != null">
+        activated = #{activated,jdbcType=BIT},
+      </if>
+      <if test="langKey != null">
+        lang_key = #{langKey,jdbcType=VARCHAR},
+      </if>
+      <if test="activationKey != null">
+        activation_key = #{activationKey,jdbcType=VARCHAR},
+      </if>
+      <if test="resetKey != null">
+        reset_key = #{resetKey,jdbcType=VARCHAR},
+      </if>
+      <if test="resetTime != null">
+        reset_time = #{resetTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastmodifiedBy != null">
+        lastmodified_by = #{lastmodifiedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastmodifiedTime != null">
+        lastmodified_time = #{lastmodifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sdcuike.practice.domain.User">
+    update user
+    set login_name = #{loginName,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=CHAR},
+      password_hash = #{passwordHash,jdbcType=VARCHAR},
+      first_name = #{firstName,jdbcType=VARCHAR},
+      last_name = #{lastName,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      image_url = #{imageUrl,jdbcType=VARCHAR},
+      activated = #{activated,jdbcType=BIT},
+      lang_key = #{langKey,jdbcType=VARCHAR},
+      activation_key = #{activationKey,jdbcType=VARCHAR},
+      reset_key = #{resetKey,jdbcType=VARCHAR},
+      reset_time = #{resetTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      lastmodified_by = #{lastmodifiedBy,jdbcType=VARCHAR},
+      lastmodified_time = #{lastmodifiedTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="findByLoginName" parameterType="string" resultType="User">
+    SELECT <include refid="Base_Column_List"/>
+    FROM user
+    WHERE login_name = #{loginName}
+  </select>
+</mapper>

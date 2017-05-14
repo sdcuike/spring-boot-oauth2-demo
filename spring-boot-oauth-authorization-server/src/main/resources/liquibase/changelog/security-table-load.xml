@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="mysql"/>
+    <property name="autoIncrement" value="true"/>
+
+    <changeSet id="201705051804448" author="beaver">
+        <loadData encoding="UTF-8"
+                  file="liquibase/users.csv"
+                  separator=";"
+                  tableName="user">
+            <column name="activated" type="boolean"/>
+            <column name="created_time" type="timestamp"/>
+        </loadData>
+
+        <loadData encoding="UTF-8"
+                  file="liquibase/authorities.csv"
+                  separator=";"
+                  tableName="authority"/>
+
+        <loadData encoding="UTF-8"
+                  file="liquibase/users_authorities.csv"
+                  separator=";"
+                  tableName="user_authority"/>
+
+        <loadData encoding="UTF-8"
+                  file="liquibase/oauth_client_details.csv"
+                  separator=";"
+                  tableName="oauth_client_details"/>
+    </changeSet>
+</databaseChangeLog>

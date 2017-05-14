@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdcuike.practice.mapper.AtlBankMapper">
+  <resultMap id="BaseResultMap" type="com.sdcuike.practice.domain.AtlBank">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="bank_name" jdbcType="VARCHAR" property="bankName" />
+    <result column="bank_code" jdbcType="VARCHAR" property="bankCode" />
+    <result column="country_code" jdbcType="VARCHAR" property="countryCode" />
+    <result column="bank_type" jdbcType="VARCHAR" property="bankType" />
+    <result column="created_date" jdbcType="TIMESTAMP" property="createdDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, bank_name, bank_code, country_code, bank_type, created_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from atl_bank
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from atl_bank
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.sdcuike.practice.domain.AtlBank">
+    insert into atl_bank (id, bank_name, bank_code, 
+      country_code, bank_type, created_date
+      )
+    values (#{id,jdbcType=BIGINT}, #{bankName,jdbcType=VARCHAR}, #{bankCode,jdbcType=VARCHAR}, 
+      #{countryCode,jdbcType=VARCHAR}, #{bankType,jdbcType=VARCHAR}, #{createdDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sdcuike.practice.domain.AtlBank">
+    insert into atl_bank
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="bankName != null">
+        bank_name,
+      </if>
+      <if test="bankCode != null">
+        bank_code,
+      </if>
+      <if test="countryCode != null">
+        country_code,
+      </if>
+      <if test="bankType != null">
+        bank_type,
+      </if>
+      <if test="createdDate != null">
+        created_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="bankName != null">
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null">
+        #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="countryCode != null">
+        #{countryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bankType != null">
+        #{bankType,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null">
+        #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sdcuike.practice.domain.AtlBank">
+    update atl_bank
+    <set>
+      <if test="bankName != null">
+        bank_name = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null">
+        bank_code = #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="countryCode != null">
+        country_code = #{countryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bankType != null">
+        bank_type = #{bankType,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null">
+        created_date = #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sdcuike.practice.domain.AtlBank">
+    update atl_bank
+    set bank_name = #{bankName,jdbcType=VARCHAR},
+      bank_code = #{bankCode,jdbcType=VARCHAR},
+      country_code = #{countryCode,jdbcType=VARCHAR},
+      bank_type = #{bankType,jdbcType=VARCHAR},
+      created_date = #{createdDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

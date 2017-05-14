@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdcuike.practice.mapper.UserAuthorityMapper">
+  <resultMap id="BaseResultMap" type="UserAuthority">
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    user_id, authority_name
+  </sql>
+
+  <delete id="deleteByPrimaryKey" parameterType="UserAuthority">
+    delete from user_authority
+    where user_id = #{userId,jdbcType=BIGINT}
+      and authority_name = #{authorityName,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="UserAuthority">
+    insert into user_authority (user_id, authority_name)
+    values (#{userId,jdbcType=BIGINT}, #{authorityName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="UserAuthority">
+    insert into user_authority
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>coln
+      <if test="authorityName != null">
+        authority_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="authorityName != null">
+        #{authorityName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="findByUserId" parameterType="long" resultType="UserAuthority">
+      SELECT <include refid="Base_Column_List" />
+      FROM user_authority
+      WHERE user_id = #{userId}
+  </select>
+</mapper>

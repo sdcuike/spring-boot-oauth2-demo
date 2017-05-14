@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdcuike.practice.mapper.CourseEnrollmentMapper">
+  <resultMap id="BaseResultMap" type="com.sdcuike.practice.domain.CourseEnrollmentKey">
+    <id column="course_id" jdbcType="BIGINT" property="courseId" />
+    <id column="stud_id" jdbcType="BIGINT" property="studId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="com.sdcuike.practice.domain.CourseEnrollmentKey">
+    delete from course_enrollment
+    where course_id = #{courseId,jdbcType=BIGINT}
+      and stud_id = #{studId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.sdcuike.practice.domain.CourseEnrollmentKey">
+    insert into course_enrollment (course_id, stud_id)
+    values (#{courseId,jdbcType=BIGINT}, #{studId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sdcuike.practice.domain.CourseEnrollmentKey">
+    insert into course_enrollment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="courseId != null">
+        course_id,
+      </if>
+      <if test="studId != null">
+        stud_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="courseId != null">
+        #{courseId,jdbcType=BIGINT},
+      </if>
+      <if test="studId != null">
+        #{studId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

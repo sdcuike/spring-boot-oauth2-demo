@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdcuike.practice.mapper.TutorMapper">
+  <resultMap id="BaseResultMap" type="com.sdcuike.practice.domain.Tutor">
+    <id column="tutor_id" jdbcType="BIGINT" property="tutorId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="dob" jdbcType="DATE" property="dob" />
+    <result column="addr_id" jdbcType="BIGINT" property="addrId" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.sdcuike.practice.domain.TutorWithBLOBs">
+    <result column="bio" jdbcType="LONGVARCHAR" property="bio" />
+    <result column="pic" jdbcType="LONGVARBINARY" property="pic" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    tutor_id, name, email, phone, dob, addr_id
+  </sql>
+  <sql id="Blob_Column_List">
+    bio, pic
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tutor
+    where tutor_id = #{tutorId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tutor
+    where tutor_id = #{tutorId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.sdcuike.practice.domain.TutorWithBLOBs">
+    insert into tutor (tutor_id, name, email, 
+      phone, dob, addr_id, bio, 
+      pic)
+    values (#{tutorId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{dob,jdbcType=DATE}, #{addrId,jdbcType=BIGINT}, #{bio,jdbcType=LONGVARCHAR}, 
+      #{pic,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sdcuike.practice.domain.TutorWithBLOBs">
+    insert into tutor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tutorId != null">
+        tutor_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="dob != null">
+        dob,
+      </if>
+      <if test="addrId != null">
+        addr_id,
+      </if>
+      <if test="bio != null">
+        bio,
+      </if>
+      <if test="pic != null">
+        pic,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tutorId != null">
+        #{tutorId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="dob != null">
+        #{dob,jdbcType=DATE},
+      </if>
+      <if test="addrId != null">
+        #{addrId,jdbcType=BIGINT},
+      </if>
+      <if test="bio != null">
+        #{bio,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="pic != null">
+        #{pic,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sdcuike.practice.domain.TutorWithBLOBs">
+    update tutor
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="dob != null">
+        dob = #{dob,jdbcType=DATE},
+      </if>
+      <if test="addrId != null">
+        addr_id = #{addrId,jdbcType=BIGINT},
+      </if>
+      <if test="bio != null">
+        bio = #{bio,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="pic != null">
+        pic = #{pic,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where tutor_id = #{tutorId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.sdcuike.practice.domain.TutorWithBLOBs">
+    update tutor
+    set name = #{name,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      dob = #{dob,jdbcType=DATE},
+      addr_id = #{addrId,jdbcType=BIGINT},
+      bio = #{bio,jdbcType=LONGVARCHAR},
+      pic = #{pic,jdbcType=LONGVARBINARY}
+    where tutor_id = #{tutorId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sdcuike.practice.domain.Tutor">
+    update tutor
+    set name = #{name,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      dob = #{dob,jdbcType=DATE},
+      addr_id = #{addrId,jdbcType=BIGINT}
+    where tutor_id = #{tutorId,jdbcType=BIGINT}
+  </update>
+</mapper>
