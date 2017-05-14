@@ -1,0 +1,345 @@
+{
+	"variables": [],
+	"info": {
+		"name": "spring-boot-practice",
+		"_postman_id": "d2df4488-488e-d7aa-6160-983e189cb254",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "${host}/example/oauth/token-登录系统",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"postman.setEnvironmentVariable(\"accessToken\", JSON.parse(responseBody).access_token);"
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"username": "apptemapp",
+						"password": "my-secret-token-to-change-in-production",
+						"saveHelperData": true,
+						"showPassword": false
+					}
+				},
+				"url": "{{host}}/oauth/token",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic YXBwdGVtYXBwOm15LXNlY3JldC10b2tlbi10by1jaGFuZ2UtaW4tcHJvZHVjdGlvbg==",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"disabled": false,
+							"key": "grant_type",
+							"value": "password",
+							"enabled": true,
+							"type": "text"
+						},
+						{
+							"disabled": false,
+							"key": "username",
+							"value": "system",
+							"enabled": true,
+							"type": "text"
+						},
+						{
+							"disabled": false,
+							"key": "password",
+							"value": "system",
+							"enabled": true,
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "${host}/example/db",
+			"request": {
+				"url": "{{host}}/example/db",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "{{host}}/example/all_company",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"postman.setEnvironmentVariable(\"accessToken\", JSON.parse(responseBody).access_token);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{host}}/example/all_company",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"disabled": false,
+							"key": "grant_type",
+							"value": "password",
+							"enabled": true,
+							"type": "text"
+						},
+						{
+							"disabled": false,
+							"key": "username",
+							"value": "user",
+							"enabled": true,
+							"type": "text"
+						},
+						{
+							"disabled": false,
+							"key": "password",
+							"value": "user",
+							"enabled": true,
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "example/all_company/page?page=1&size=1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"postman.setEnvironmentVariable(\"accessToken\", JSON.parse(responseBody).access_token);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{host}}/example/all_company/page?page=0&size=10",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"disabled": false,
+							"key": "grant_type",
+							"value": "password",
+							"enabled": true,
+							"type": "text"
+						},
+						{
+							"disabled": false,
+							"key": "username",
+							"value": "user",
+							"enabled": true,
+							"type": "text"
+						},
+						{
+							"disabled": false,
+							"key": "password",
+							"value": "user",
+							"enabled": true,
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "example/all_company/page?page=1&size=1 copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"postman.setEnvironmentVariable(\"accessToken\", JSON.parse(responseBody).access_token);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{host}}/example/company",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n      \n      \"companyOid\": \"373\",\n      \"name\": \"s11\",\n      \"logoId\": 65,\n      \"createdBy\": \"exew\",\n      \"doneRegisterLead\": true,\n      \"taxId\": \"111\",\n      \"companyType\": 1,\n      \"createdDate\": \"2019-04-19T17:58:52\"\n\n     \n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "{{host}}/city/insert",
+			"request": {
+				"url": "{{host}}/city/insert",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"dfj11\",\n\"state\":\"shd\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "{{host}}/city/update",
+			"request": {
+				"url": "{{host}}/city/update",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":2,\n\t\"name\":\"异星2\",\n\t \"createTime\": \"2028-04-25T17:52:49\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "{{host}}/student/1",
+			"request": {
+				"url": "{{host}}/city/update",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":2,\n\t\"name\":\"异星2\",\n\t \"createTime\": \"2028-04-25T17:52:49\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "{{host}}/city/get/1",
+			"request": {
+				"url": "{{host}}/city/get/1",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":2,\n\t\"name\":\"异星2\",\n\t \"createTime\": \"2028-04-25T17:52:49\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,63 @@
+commonConfig: 
+            appName: spring-boot-oauth-resource-server
+
+
+# tomcat 配置
+#server.address: 
+server:
+      port: 8999
+      contextPath:  /spring-boot-oauth-resource-server
+      displayName:  ${spring.application.name}
+# 日志配置
+logging:
+        file: ${commonConfig.appName}.log
+        path: ./
+        pattern:
+                console: "-%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint}  [%F:%L]  %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"
+                
+                file: "${WHO}  %d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%t] %-40.40logger{60}   [%F:%L]: %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"
+                
+                
+        level:  
+            root: debug
+
+
+
+
+# JACKSON (JacksonProperties) json序列化和反序列化使用的日期格式
+spring:
+    jackson:
+          date-format:  yyyy-MM-dd'T'HH:mm
+          joda-date-time-format:  yyyy-MM-dd'T'HH:mm
+          time-zone:  GMT+8
+          serialization:
+                      WRITE_DATES_AS_TIMESTAMPS:  false
+    application:
+      name: ${spring.application.name}
+
+
+
+
+
+
+# 异步线程池配置
+async:
+    core-pool-size: 2
+    max-pool-size: 50
+    queue-capacity: 10000
+    namePrefix: spring-boot-practice
+
+
+
+# Configuration properties for OAuth2 Resources.
+oauth2:
+    server-host: http://localhost:8989/springBoot
+
+security:
+  oauth2:
+      resource:
+          id: resource-server-8
+          clientId: resource-server-clientId11
+          clientSecret: resource-server-clientSecret11
+          tokenInfoUri:  ${oauth2.server-host}/oauth/check_token/
+          userInfoUri: ${oauth2.server-host}/user

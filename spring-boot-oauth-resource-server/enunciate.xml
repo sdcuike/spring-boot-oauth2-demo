@@ -1,0 +1,12 @@
+<enunciate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="http://enunciate.webcohesion.com/schemas/enunciate-2.2.0.xsd">
+
+    <title>文档测试</title>
+    <copyright>https://github.com/sdcuike</copyright>
+
+    <application root="http://localhost:8989/springBoot"/>
+    <api-classes>
+        <include pattern="com.sdcuike.practice.controller.**"/>
+    </api-classes>
+
+</enunciate>
