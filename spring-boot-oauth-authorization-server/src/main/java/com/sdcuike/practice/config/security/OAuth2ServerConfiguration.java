@@ -22,42 +22,51 @@ import org.springframework.security.oauth2.provider.code.AuthorizationCodeServic
 import org.springframework.security.oauth2.provider.code.JdbcAuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.sql.DataSource;
+import java.security.Principal;
 
 @Configuration
+@RestController
 public class OAuth2ServerConfiguration {
-
+    
     private final DataSource dataSource;
-
+    
     public OAuth2ServerConfiguration(DataSource dataSource) {
         this.dataSource = dataSource;
     }
-
+    
     @Bean
     public JdbcTokenStore tokenStore() {
         return new JdbcTokenStore(dataSource);
     }
-
+    
+    @RequestMapping("/user")
+    public Principal user(Principal user) {
+        return user;
+    }
+    
     @Configuration
     @EnableResourceServer
     protected static class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
-
+        
         private final TokenStore tokenStore;
-
+        
         private final Http401UnauthorizedEntryPoint http401UnauthorizedEntryPoint;
-
+        
         private final AjaxLogoutSuccessHandler ajaxLogoutSuccessHandler;
-
-
+        
+        
         public ResourceServerConfiguration(TokenStore tokenStore, Http401UnauthorizedEntryPoint http401UnauthorizedEntryPoint,
-                                           AjaxLogoutSuccessHandler ajaxLogoutSuccessHandler ) {
-
+                                           AjaxLogoutSuccessHandler ajaxLogoutSuccessHandler) {
+            
             this.tokenStore = tokenStore;
             this.http401UnauthorizedEntryPoint = http401UnauthorizedEntryPoint;
             this.ajaxLogoutSuccessHandler = ajaxLogoutSuccessHandler;
         }
-
+        
         @Override
         public void configure(HttpSecurity http) throws Exception {
             http
@@ -86,56 +95,56 @@ public class OAuth2ServerConfiguration {
                     .antMatchers("/swagger-resources/configuration/ui").permitAll()
                     .antMatchers("/swagger-ui/index.html").hasAuthority(AuthoritiesConstants.ADMIN);
         }
-
+        
         @Override
         public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
             resources.resourceId("res_apptem").tokenStore(tokenStore);
         }
     }
-
+    
     @Configuration
     @EnableAuthorizationServer
     protected static class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
-
+        
         private final AuthenticationManager authenticationManager;
-
+        
         private final TokenStore tokenStore;
-
+        
         private final DataSource dataSource;
-
+        
         public AuthorizationServerConfiguration(@Qualifier("authenticationManagerBean") AuthenticationManager authenticationManager,
                                                 TokenStore tokenStore, DataSource dataSource) {
-
+            
             this.authenticationManager = authenticationManager;
             this.tokenStore = tokenStore;
             this.dataSource = dataSource;
         }
-
+        
         @Bean
         protected AuthorizationCodeServices authorizationCodeServices() {
             return new JdbcAuthorizationCodeServices(dataSource);
         }
-
+        
         @Bean
         public ApprovalStore approvalStore() {
             return new JdbcApprovalStore(dataSource);
         }
-
+        
         @Override
         public void configure(AuthorizationServerEndpointsConfigurer endpoints)
                 throws Exception {
             endpoints
-                .authorizationCodeServices(authorizationCodeServices())
-                .approvalStore(approvalStore())
-                .tokenStore(tokenStore)
-                .authenticationManager(authenticationManager);
+                    .authorizationCodeServices(authorizationCodeServices())
+                    .approvalStore(approvalStore())
+                    .tokenStore(tokenStore)
+                    .authenticationManager(authenticationManager);
         }
-
+        
         @Override
         public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
             oauthServer.allowFormAuthenticationForClients();
         }
-
+        
         @Override
         public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
             clients.jdbc(dataSource);
