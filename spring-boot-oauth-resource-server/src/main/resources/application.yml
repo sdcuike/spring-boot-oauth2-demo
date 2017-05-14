@@ -33,7 +33,7 @@ spring:
           serialization:
                       WRITE_DATES_AS_TIMESTAMPS:  false
     application:
-      name: ${spring.application.name}
+      name: ${commonConfig.appName}
 
 
 
@@ -54,9 +54,9 @@ oauth2:
     server-host: http://localhost:8989/springBoot
 
 security:
-  oauth2:
+    oauth2:
       resource:
-          id: resource-server-8
+          id: res_apptem
           clientId: resource-server-clientId11
           clientSecret: resource-server-clientSecret11
           tokenInfoUri:  ${oauth2.server-host}/oauth/check_token/
