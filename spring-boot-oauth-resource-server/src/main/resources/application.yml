@@ -61,3 +61,14 @@ security:
           clientSecret: resource-server-clientSecret11
           tokenInfoUri:  ${oauth2.server-host}/oauth/check_token/
           userInfoUri: ${oauth2.server-host}/user
+
+
+#ribbon config
+exampleService:
+  ribbon:
+    listOfServers: http://localhost:8989
+
+
+ribbon.eureka.enabled: false
+
+feign.oauth2.enabled: true

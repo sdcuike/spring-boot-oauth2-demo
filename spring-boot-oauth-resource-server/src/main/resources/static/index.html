@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.2">
-<title>Untitled</title>
+<title>spring boot practice  API</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -411,16 +411,232 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
+<h1>spring boot practice  API</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
-
+<ul class="sectlevel1">
+<li><a href="#_overview">Overview</a>
+<ul class="sectlevel2">
+<li><a href="#_version_information">Version information</a></li>
+<li><a href="#_contact_information">Contact information</a></li>
+<li><a href="#_license_information">License information</a></li>
+<li><a href="#_uri_scheme">URI scheme</a></li>
+<li><a href="#_tags">Tags</a></li>
+</ul>
+</li>
+<li><a href="#_paths">Paths</a>
+<ul class="sectlevel2">
+<li><a href="#_home">home</a></li>
+</ul>
+</li>
+<li><a href="#_definitions">Definitions</a>
+<ul class="sectlevel2">
+<li><a href="#_modelresult_string">ModelResult«string»</a></li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_overview">Overview</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Unresolved directive in index.adoc - include::/Users/beaver/gitlab/spring-boot-oauth2-demo/spring-boot-oauth-resource-server/target/docs/asciidoc/generated/overview.adoc[]
-Unresolved directive in index.adoc - include::/Users/beaver/gitlab/spring-boot-oauth2-demo/spring-boot-oauth-resource-server/target/docs/asciidoc/generated/paths.adoc[]
-Unresolved directive in index.adoc - include::/Users/beaver/gitlab/spring-boot-oauth2-demo/spring-boot-oauth-resource-server/target/docs/asciidoc/generated/definitions.adoc[]</p>
+<p>练习spring-boot</p>
+</div>
+<div class="sect2">
+<h3 id="_version_information">Version information</h3>
+<div class="paragraph">
+<p>Version: 1.0.0</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_contact_information">Contact information</h3>
+<div class="paragraph">
+<p>Contact: sdcuike
+Contact Email: <a href="mailto:rain.mr@foxmail.com">rain.mr@foxmail.com</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_license_information">License information</h3>
+<div class="paragraph">
+<p>License: Apache License Version 2.0
+License URL: <a href="https://www.apache.org/licenses/LICENSE-2.0" class="bare">https://www.apache.org/licenses/LICENSE-2.0</a></p>
+</div>
+<div class="paragraph">
+<p>Terms of service: <a href="https://github.com/sdcuike/spring-boot-practice" class="bare">https://github.com/sdcuike/spring-boot-practice</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_uri_scheme">URI scheme</h3>
+<div class="paragraph">
+<p>Host: localhost
+BasePath: /</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_tags">Tags</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Pet Service: All apis relating to pets</p>
+</li>
+<li>
+<p>example-controller: Example Controller</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_paths">Paths</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_home">home</h3>
+<div class="listingblock">
+<div class="content">
+<pre>GET /example/</pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_responses">Responses</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 33%;">
+<col style="width: 33%;">
+<col style="width: 33%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">HTTP Code</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OK</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#_modelresult_string">ModelResult«string»</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">500</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">500 message</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#Error">[Error]</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_consumes">Consumes</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>application/json</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_produces">Produces</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>application/json</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_tags_2">Tags</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>example-controller</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_definitions">Definitions</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_modelresult_string">ModelResult«string»</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Required</th>
+<th class="tableblock halign-left valign-top">Schema</th>
+<th class="tableblock halign-left valign-top">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">data</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">info</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">inputParamWhereFalse</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">readFromCache</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">returnCode</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">returnMsg</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">success</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">boolean</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="footer">
