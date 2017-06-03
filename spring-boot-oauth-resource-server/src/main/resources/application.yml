@@ -19,7 +19,7 @@ logging:
                 
                 
         level:  
-            root: debug
+            root: info
 
 
 
@@ -57,8 +57,8 @@ security:
     oauth2:
       resource:
           id: res_apptem
-          clientId: resource-server-clientId11
-          clientSecret: resource-server-clientSecret11
+          clientId: resource-server-clientId8
+          clientSecret: resource-server-clientSecret8
           tokenInfoUri:  ${oauth2.server-host}/oauth/check_token/
           userInfoUri: ${oauth2.server-host}/user
 
@@ -69,6 +69,13 @@ exampleService:
     listOfServers: http://localhost:8989
 
 
-ribbon.eureka.enabled: false
 
-feign.oauth2.enabled: true
+
+practice:
+  oauth2:
+    client:
+      id: ${security.oauth2.resource.id}
+      accessTokenUrl: ${oauth2.server-host}/oauth/token
+      clientId: ${security.oauth2.resource.clientId}
+      clientSecret: ${security.oauth2.resource.clientSecret}
+      clientAuthenticationScheme: header

@@ -14,7 +14,7 @@ initialization performed by Boot
 
 	<appender name="DEBUG_LEVEL_REMAPPER" class="org.springframework.boot.logging.logback.LevelRemappingAppender">
 		<destinationLogger>org.springframework.boot</destinationLogger>
-	</appender>
+	</appender>ClientCredentialsTokenEndpointFilter
 
 	<!--<logger name="org.apache.catalina.startup.DigesterFactory" level="ERROR"/>-->
 	<!--<logger name="org.apache.catalina.util.LifecycleBase" level="ERROR"/>-->
