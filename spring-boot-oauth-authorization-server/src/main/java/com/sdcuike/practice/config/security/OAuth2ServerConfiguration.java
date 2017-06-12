@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -16,6 +17,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.approval.ApprovalStore;
 import org.springframework.security.oauth2.provider.approval.JdbcApprovalStore;
 import org.springframework.security.oauth2.provider.code.AuthorizationCodeServices;
@@ -43,9 +45,22 @@ public class OAuth2ServerConfiguration {
         return new JdbcTokenStore(dataSource);
     }
     
+    /**
+     * 获取用户信息，可以定制
+     *
+     * @param principal
+     * @return
+     */
     @RequestMapping("/user")
-    public Principal user(Principal user) {
-        return user;
+    public Object user(Principal principal) {
+        if (principal != null) {
+            OAuth2Authentication oAuth2Authentication = (OAuth2Authentication) principal;
+            Authentication authentication = oAuth2Authentication.getUserAuthentication();
+            
+            RichUserDetails richUserDetails = (RichUserDetails) authentication.getPrincipal();
+            return richUserDetails;
+        }
+        return null;
     }
     
     @Configuration

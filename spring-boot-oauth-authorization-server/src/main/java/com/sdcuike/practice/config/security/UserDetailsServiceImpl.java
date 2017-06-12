@@ -46,9 +46,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                         .stream()
                         .map(authority -> new SimpleGrantedAuthority(authority.getName()))
                         .collect(Collectors.toList());
-            return new org.springframework.security.core.userdetails.User(login,
-                    user.getPasswordHash(),
-                    grantedAuthorities);
+            
+            return new RichUserDetails(user, grantedAuthorities);
+            
         }).orElseThrow(() -> new UsernameNotFoundException("User " + login + " was not found in the " +
                 "database"));
     }

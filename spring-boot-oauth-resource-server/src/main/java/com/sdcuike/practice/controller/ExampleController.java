@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.PostConstruct;
 
 @RestController
-@RequestMapping(path = "/example", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/api/example", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ExampleController {
     private final Logger log = LoggerFactory.getLogger(getClass());
     

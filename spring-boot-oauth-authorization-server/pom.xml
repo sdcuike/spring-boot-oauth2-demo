@@ -45,7 +45,7 @@
         <assembly-plugin.version>2.6</assembly-plugin.version>
         <source-plugin.version>3.0.0</source-plugin.version>
         <jar-plugin.version>2.6</jar-plugin.version>
-        <maven.test.skip>false</maven.test.skip>
+        <maven.test.skip>true</maven.test.skip>
         <enunciate.version>2.9.1</enunciate.version>
     </properties>
 
