@@ -32,7 +32,6 @@ import java.net.UnknownHostException;
 public class Application {
     public static void main(String[] args) throws UnknownHostException {
         SpringBootApplicationUtil.runSpringBootApplication(log, args, Application.class);
-        
     }
     
 }

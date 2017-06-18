@@ -53,6 +53,8 @@ target/
 /web-app/plugins
 /web-app/WEB-INF/classes
 
+/src/main/resources/static/doc/**
+
 # "temporary" build files
 target/
 out/

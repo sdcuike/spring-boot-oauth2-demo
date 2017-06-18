@@ -1,5 +1,7 @@
 package com.sdcuike.practice.config.security;
 
+import com.sdcuike.spring.security.AuthoritiesConstants;
+import com.sdcuike.spring.security.RichUserDetails;
 import io.github.jhipster.security.AjaxLogoutSuccessHandler;
 import io.github.jhipster.security.Http401UnauthorizedEntryPoint;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -52,7 +54,7 @@ public class OAuth2ServerConfiguration {
      * @return
      */
     @RequestMapping("/user")
-    public Object user(Principal principal) {
+    public RichUserDetails user(Principal principal) {
         if (principal != null) {
             OAuth2Authentication oAuth2Authentication = (OAuth2Authentication) principal;
             Authentication authentication = oAuth2Authentication.getUserAuthentication();

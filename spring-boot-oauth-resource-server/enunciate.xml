@@ -4,7 +4,7 @@
     <title>文档测试</title>
     <copyright>https://github.com/sdcuike</copyright>
 
-    <application root="http://localhost:8989/springBoot"/>
+    <application root="/springBoot"/>
     <api-classes>
         <include pattern="com.sdcuike.practice.controller.**"/>
     </api-classes>

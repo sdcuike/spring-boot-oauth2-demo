@@ -5,6 +5,7 @@ import com.sdcuike.practice.domain.User;
 import com.sdcuike.practice.domain.UserAuthority;
 import com.sdcuike.practice.mapper.UserAuthorityMapper;
 import com.sdcuike.practice.mapper.UserMapper;
+import com.sdcuike.spring.security.RichUserDetails;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -47,7 +48,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                         .map(authority -> new SimpleGrantedAuthority(authority.getName()))
                         .collect(Collectors.toList());
             
-            return new RichUserDetails(user, grantedAuthorities);
+             
+            return new RichUserDetails(user.getId(),user.getPhone(),user.getLoginName(),user.getPasswordHash(), grantedAuthorities);
             
         }).orElseThrow(() -> new UsernameNotFoundException("User " + login + " was not found in the " +
                 "database"));

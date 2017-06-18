@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.PostConstruct;
-
 @RestController
 @RequestMapping(path = "/api/example", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ExampleController {
@@ -32,7 +30,7 @@ public class ExampleController {
         return exampleServiceFeignClient.home();
     }
     
-    @PostConstruct
+//    @PostConstruct
     public void init(){
         ModelResult<String> home = exampleServiceFeignClient.home();
         log.info("/////////////////////////////");

@@ -20,7 +20,7 @@ public class Oauth2ClientConfig {
     private Oauth2ClientProperties oauth2ClientProperties;
     
     @Bean("practiceClientCredentialsResourceDetails")
-    ClientCredentialsResourceDetails resourceDetails() {
+    public ClientCredentialsResourceDetails resourceDetails() {
         ClientCredentialsResourceDetails details = new ClientCredentialsResourceDetails();
         details.setId(oauth2ClientProperties.getId());
         details.setAccessTokenUri(oauth2ClientProperties.getAccessTokenUrl());
@@ -32,8 +32,6 @@ public class Oauth2ClientConfig {
     
     @Bean("practiceOAuth2RestTemplate")
     public OAuth2RestTemplate oAuth2RestTemplate() {
-        OAuth2RestTemplate restTemplate = new OAuth2RestTemplate(resourceDetails(), new DefaultOAuth2ClientContext());
-        
-        return restTemplate;
+        return new OAuth2RestTemplate(resourceDetails(), new DefaultOAuth2ClientContext());
     }
 }

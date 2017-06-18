@@ -33,13 +33,19 @@ Spring Boot Practice
 mvn test -Dspring.profiles.active=doc
 
 ## 访问
-[http://localhost:8989/springBoot/swagger-ui.html](http://localhost:8989/springBoot/swagger-ui.html)
+[http://localhost:8999/spring-boot-oauth-resource-server/swagger-ui.html](http://localhost:8999/spring-boot-oauth-resource-server/swagger-ui.html)
 
-[http://localhost:8989/springBoot/v2/api-docs](http://localhost:8989/springBoot/v2/api-docs)
+和
+
+[http://localhost:8999/spring-boot-oauth-resource-server/v2/api-docs](http://localhost:8999/spring-boot-oauth-resource-server/v2/api-docs)
 
 
 - enunciate两种文档生成[https://github.com/stoicflame/enunciate](https://github.com/stoicflame/enunciate),
   而且支持Lombok，见[https://github.com/stoicflame/enunciate/wiki/Lombok](https://github.com/stoicflame/enunciate/wiki/Lombok)
+  
+  **建议用enunciate文档生成**
+  
+  [http://localhost:8999/spring-boot-oauth-resource-server/doc/index.html](http://localhost:8999/spring-boot-oauth-resource-server/doc/index.html)
 --------------------------
 --------------------------
 --------------------------

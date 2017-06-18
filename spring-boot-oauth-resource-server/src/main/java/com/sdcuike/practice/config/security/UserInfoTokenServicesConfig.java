@@ -1,5 +1,8 @@
 package com.sdcuike.practice.config.security;
 
+import com.sdcuike.spring.security.RichUserDetails;
+import com.sdcuike.spring.security.RichUserInfoTokenServices;
+import com.sdcuike.spring.security.RichUserPrincipalExtractor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.PrincipalExtractor;
@@ -30,27 +33,9 @@ public class UserInfoTokenServicesConfig {
     
     @Bean
     @Primary
-    public ResourceServerTokenServices myUserInfoTokenServices() {
-        UseOidPrincipalExtractor useOidPrincipalExtractor = new UseOidPrincipalExtractor();
-        MyUserInfoTokenServices myUserInfoTokenServices = new MyUserInfoTokenServices(sso.getUserInfoUri(), clientId);
-        myUserInfoTokenServices.setPrincipalExtractor(new UseOidPrincipalExtractor());
-        return myUserInfoTokenServices;
-    }
-    
-    public static class MyUserInfoTokenServices extends UserInfoTokenServices {
-        public MyUserInfoTokenServices(String userInfoEndpointUrl, String clientId) {
-            super(userInfoEndpointUrl, clientId);
-        }
+    public ResourceServerTokenServices richUserInfoTokenServices() {
+        return new RichUserInfoTokenServices(sso.getUserInfoUri(), clientId, new RichUserPrincipalExtractor());
     }
     
     
-    public static class UseOidPrincipalExtractor implements PrincipalExtractor {
-        
-        private static final String userOID = "id";
-        
-        @Override
-        public Object extractPrincipal(Map<String, Object> map) {
-            return map.get(userOID);
-        }
-    }
 }
