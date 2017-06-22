@@ -148,4 +148,5 @@ Icon
 logs/
 *registry-cache.properties
 *registry-cache.properties.lock
- 
+
+src/main/resources/static/doc/
