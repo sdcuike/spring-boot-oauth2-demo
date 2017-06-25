@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.client.Netty4ClientHttpRequestFactory;
 import org.springframework.security.oauth2.client.DefaultOAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.token.grant.client.ClientCredentialsResourceDetails;
@@ -32,6 +33,10 @@ public class Oauth2ClientConfig {
     
     @Bean("practiceOAuth2RestTemplate")
     public OAuth2RestTemplate oAuth2RestTemplate() {
-        return new OAuth2RestTemplate(resourceDetails(), new DefaultOAuth2ClientContext());
+        final OAuth2RestTemplate oAuth2RestTemplate = new OAuth2RestTemplate(resourceDetails(), new DefaultOAuth2ClientContext());
+        oAuth2RestTemplate.setRequestFactory(new Netty4ClientHttpRequestFactory());
+        
+        return oAuth2RestTemplate;
+        
     }
 }
