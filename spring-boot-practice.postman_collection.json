@@ -21,6 +21,15 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"username": "apptemapp",
+						"password": "my-secret-token-to-change-in-production",
+						"saveHelperData": true,
+						"showPassword": false
+					}
+				},
 				"url": "{{host}}/oauth/token",
 				"method": "POST",
 				"header": [
@@ -42,21 +51,18 @@
 							"disabled": false,
 							"key": "grant_type",
 							"value": "password",
-							"enabled": true,
 							"type": "text"
 						},
 						{
 							"disabled": false,
 							"key": "username",
 							"value": "system",
-							"enabled": true,
 							"type": "text"
 						},
 						{
 							"disabled": false,
 							"key": "password",
 							"value": "system",
-							"enabled": true,
 							"type": "text"
 						}
 					]
@@ -125,21 +131,18 @@
 							"disabled": false,
 							"key": "grant_type",
 							"value": "password",
-							"enabled": true,
 							"type": "text"
 						},
 						{
 							"disabled": false,
 							"key": "username",
 							"value": "user",
-							"enabled": true,
 							"type": "text"
 						},
 						{
 							"disabled": false,
 							"key": "password",
 							"value": "user",
-							"enabled": true,
 							"type": "text"
 						}
 					]
@@ -178,21 +181,18 @@
 							"disabled": false,
 							"key": "grant_type",
 							"value": "password",
-							"enabled": true,
 							"type": "text"
 						},
 						{
 							"disabled": false,
 							"key": "username",
 							"value": "user",
-							"enabled": true,
 							"type": "text"
 						},
 						{
 							"disabled": false,
 							"key": "password",
 							"value": "user",
-							"enabled": true,
 							"type": "text"
 						}
 					]
@@ -335,7 +335,7 @@
 		{
 			"name": "{{resource-server-host}}/example/",
 			"request": {
-				"url": "{{resource-server-host}}/example/",
+				"url": "{{resource-server-host}}/api/example/",
 				"method": "GET",
 				"header": [
 					{
